@@ -169,3 +169,19 @@ input:checked + .slider::before {
     top: 3px;
     font-size: 12px;
 }
+
+@media print {
+    body {
+        background: white;
+    }
+
+    button {
+        display: none;
+    }
+
+    .resume-container {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+    }
+}

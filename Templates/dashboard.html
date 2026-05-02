@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<a href="/upload_resume">
+    <button>Upload Resume (ATS Check)</button>
+</a>
+
+<h1 style="text-align:center; color:white; margin-top:40px;">
+    Welcome to Dashboard
+</h1>
+
+<div class="card">
+    <h3>Create Resume</h3>
+    <a href="/resume"><button>Start</button></a>
+</div>
+
+</body>
+</html>

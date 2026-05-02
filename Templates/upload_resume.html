@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload Resume</title>
+
+<style>
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #0a2a66, #3b82f6);
+    margin: 0;
+}
+
+/* CONTAINER */
+.container {
+    width: 400px;
+    margin: 120px auto;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: center;
+    color: white;
+}
+
+/* TITLE */
+h2 {
+    margin-bottom: 20px;
+}
+
+/* INPUT */
+input[type="file"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+}
+
+/* TEXTAREA */
+textarea {
+    height: 100px;
+}
+
+/* BUTTON */
+button {
+    background: linear-gradient(45deg, #007BFF, #00c6ff);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h2>Upload Resume for ATS Check</h2>
+
+<form method="POST" enctype="multipart/form-data">
+
+<input type="file" name="resume" required>
+
+<textarea name="job_desc" placeholder="Paste job description here"></textarea>
+
+<button type="submit">Analyze Resume</button>
+
+</form>
+
+</div>
+
+</div>
+
+</body>
+</html>

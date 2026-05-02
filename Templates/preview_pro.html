@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Resume</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    margin: 0;
+}
+
+/* MAIN CONTAINER */
+.resume-container {
+    width: 800px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 50px 60px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.1);
+}
+
+/* NAME */
+.name {
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 8px;
+    color: #0a2a66;
+    margin-bottom: 10px;
+}
+
+/* CONTACT */
+.contact {
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+/* SECTION */
+.section {
+    margin-top: 30px;
+}
+
+/* TITLE */
+.title {
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 14px;
+    color: #0a2a66;
+}
+
+/* LINE */
+.line {
+    height: 2px;
+    background: #0a2a66;
+    margin: 8px 0 15px 0;
+}
+
+/* TEXT */
+p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* LIST */
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="resume-container">
+
+<!-- NAME -->
+<div class="name">
+    {{ resume.full_name.upper() }}
+</div>
+
+<!-- CONTACT -->
+<div class="contact">
+    {{ resume.phone }}<br>
+    {{ resume.email }}
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+    <div class="title">ABOUT</div>
+    <div class="line"></div>
+    <p>{{ resume.profile }}</p>
+</div>
+
+<!-- EDUCATION -->
+<div class="section">
+    <div class="title">EDUCATION</div>
+    <div class="line"></div>
+    <p>{{ resume.education }}</p>
+</div>
+
+<!-- SKILLS -->
+<div class="section">
+    <div class="title">SKILLS</div>
+    <div class="line"></div>
+    <ul>
+    {% for item in resume.skills.replace('\n', ',').split(',') %}
+        <li>{{ item.strip() }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="section">
+    <div class="title">ACHIEVEMENTS</div>
+    <div class="line"></div>
+    <ul>
+    {% for item in resume.achievements.replace('\n', ',').split(',') %}
+        <li>{{ item.strip() }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+<!-- WORK EXPERIENCE -->
+<div class="section">
+    <div class="title">WORK EXPERIENCE</div>
+    <div class="line"></div>
+    <p>{{ resume.internships }}</p>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="section">
+    <div class="title">CERTIFICATIONS / COURSES</div>
+    <div class="line"></div>
+    <ul>
+    {% for item in resume.certifications.replace('\n', ',').split(',') %}
+        <li>{{ item.strip() }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+<!-- PROJECTS -->
+<div class="section">
+    <div class="title">PROJECTS</div>
+    <div class="line"></div>
+    <ul>
+    {% for item in resume.projects.replace('\n', ',').split(',') %}
+        <li>{{ item.strip() }}</li>
+    {% endfor %}
+    </ul>
+</div>
+
+</div>
+<div style="text-align:right; margin:20px;">
+    <button onclick="downloadPDF()">Download PDF</button>
+</div>
+
+<div class="resume-container">
+
+<!-- your resume content -->
+
+</div>
+
+<script>
+function downloadPDF() {
+    window.location.href = "/download";
+}
+</script>
+
+</body>
+
+</html>

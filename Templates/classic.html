@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Classic Resume</title>
+
+<style>
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #eef2f7;
+}
+
+/* MAIN */
+.resume-container {
+    width: 900px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+.header-center {
+    text-align: center;
+    border-bottom: 3px solid #2b5797;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.name {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2b5797;
+}
+
+.contact {
+    font-size: 13px;
+    color: #444;
+}
+
+/* SECTION TITLE */
+.section-title {
+    background: #2b5797;
+    color: white;
+    padding: 6px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+/* SECTION BOX */
+.section-box {
+    border: 1px solid #d0d0d0;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 6px;
+}
+
+th {
+    background: #dbe5f1;
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 6px;
+    font-size: 12px;
+}
+
+/* LIST */
+ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+li {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+/* HOVER */
+.section-box:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Internship table improvement */
+.section-box table {
+    border: 1px solid #000;
+}
+
+.section-box table tr:first-child td {
+    background: #f4f7fb;
+    font-weight: bold;
+}
+
+.section-box table {
+    margin-bottom: 12px;
+}
+
+/* 🔥 DOWNLOAD BUTTON */
+.download-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #2b5797;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    z-index: 999;
+}
+
+.download-btn:hover {
+    background: #1f437a;
+}
+
+/* HIDE IN PDF */
+@media print {
+    .download-btn {
+        display: none;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- 🔥 DOWNLOAD BUTTON -->
+<a href="/download">
+    <button class="download-btn">⬇ Download PDF</button>
+</a>
+
+<div class="resume-container">
+
+<!-- HEADER -->
+<div class="header-center">
+    <div class="name">{{ resume.full_name }}</div>
+    <div class="contact">
+        Address: {{ resume.address }} <br>
+        {{ resume.phone }} | {{ resume.email }}
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section-title">ABOUT</div>
+<div class="section-box">
+<p>{{ resume.profile }}</p>
+</div>
+
+<!-- QUALIFICATIONS -->
+<div class="section-title">QUALIFICATIONS</div>
+<div class="section-box">
+<table>
+<tr>
+<th>Degree</th>
+<th>University/School</th>
+<th>Passing Year</th>
+</tr>
+
+{% for line in resume.education.split('\n') %}
+{% set parts = line.split('|') %}
+<tr>
+<td>{{ parts[0] if parts|length>0 else '' }}</td>
+<td>{{ parts[1] if parts|length>1 else '' }}</td>
+<td>{{ parts[2] if parts|length>2 else '' }}</td>
+</tr>
+{% endfor %}
+
+</table>
+</div>
+
+<!-- INTERNSHIP -->
+<div class="section-title">INTERNSHIP EXPERIENCE</div>
+<div class="section-box">
+
+{% set lines = resume.internships.split('\n') %}
+
+<!-- INTERNSHIP 1 -->
+<table>
+<tr>
+<td colspan="3"><b>{{ lines[0] }}</b></td>
+</tr>
+
+<tr>
+<td colspan="3">
+<ul>
+<li>{{ lines[1] }}</li>
+<li>{{ lines[2] }}</li>
+</ul>
+</td>
+</tr>
+</table>
+
+<!-- INTERNSHIP 2 -->
+<table>
+<tr>
+<td colspan="3"><b>{{ lines[3] }}</b></td>
+</tr>
+
+<tr>
+<td colspan="3">
+<ul>
+<li>{{ lines[4] }}</li>
+<li>{{ lines[5] }}</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</div>
+
+<!-- PROJECTS -->
+<div class="section-title">ACADEMIC PROJECTS</div>
+<div class="section-box">
+<ul>
+{% for item in resume.projects.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<!-- CERTIFICATIONS -->
+<div class="section-title">CERTIFICATIONS</div>
+<div class="section-box">
+<ul>
+{% for item in resume.certifications.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<!-- SEMINARS -->
+<div class="section-title">SEMINARS / WORKSHOPS</div>
+<div class="section-box">
+<ul>
+{% if resume.seminars %}
+{% for item in resume.seminars.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+{% else %}
+<li>No seminars added</li>
+{% endif %}
+</ul>
+</div>
+
+<!-- PUBLICATIONS -->
+<div class="section-title">PUBLICATIONS</div>
+<div class="section-box">
+<ul>
+{% if resume.publications %}
+{% for item in resume.publications.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+{% else %}
+<li>No publications added</li>
+{% endif %}
+</ul>
+</div>
+
+<!-- SKILLS -->
+<div class="section-title">TECHNICAL SKILLS</div>
+<div class="section-box">
+<ul>
+{% for item in resume.skills.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<!-- ACHIEVEMENTS -->
+<div class="section-title">ACHIEVEMENTS AND EXTRA CURRICULAR ACTIVITIES</div>
+<div class="section-box">
+<ul>
+{% for item in resume.achievements.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+</div>
+
+</body>
+</html>

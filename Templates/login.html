@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/register">Register</a>
+</div>
+
+<!-- Login Form -->
+<div class="container">
+
+    <h2 style="text-align:center; color:white;">User Login</h2>
+
+    <form method="POST">
+
+        <input type="email" name="email" placeholder="Enter Email" required>
+
+        <input type="password" name="password" placeholder="Enter Password" required>
+
+        <button type="submit">Login</button>
+
+    </form>
+
+    <br>
+
+    <p style="text-align:center; color:white;">
+        New user?
+        <a href="/register" style="color:white; font-weight:bold;">Create Account</a>
+    </p>
+
+</div>
+
+</body>
+</html>

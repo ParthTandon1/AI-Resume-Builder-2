@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ATS Result</title>
+
+<style>
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #0a2a66, #3b82f6);
+    margin: 0;
+}
+
+/* CONTAINER */
+.container {
+    width: 400px;
+    margin: 120px auto;
+}
+
+/* CARD */
+.card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: center;
+    color: white;
+}
+
+/* SCORE */
+.score {
+    font-size: 50px;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+/* LIST */
+ul {
+    text-align: left;
+    padding-left: 20px;
+}
+
+/* BUTTON */
+button {
+    background: linear-gradient(45deg, #007BFF, #00c6ff);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<h2>ATS Score</h2>
+
+<div class="score">{{ score }}%</div>
+
+<h3>Missing Keywords</h3>
+
+{% if missing and missing|length > 0 %}
+<ul>
+{% for word in missing %}
+<li>{{ word }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p><b>Perfect Resume ✅</b></p>
+{% endif %}
+
+<h3>Suggestions</h3>
+<ul>
+<li>Add relevant keywords from job description</li>
+<li>Use action verbs (Built, Developed, Improved)</li>
+<li>Include measurable achievements</li>
+<li>Mention tools clearly (Python, SQL, ML)</li>
+</ul>
+
+<a href="/dashboard">
+<button>Back to Dashboard</button>
+</a>
+
+</div>
+
+</div>
+
+</body>
+</html>

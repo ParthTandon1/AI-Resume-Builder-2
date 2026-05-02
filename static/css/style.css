@@ -1,0 +1,171 @@
+/* ---------------- BODY ---------------- */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------------- NAVBAR ---------------- */
+.navbar {
+    background: rgba(0,0,0,0.7);
+    padding: 15px;
+    text-align: center;
+}
+
+.navbar a {
+    color: white;
+    margin: 0 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #74ebd5;
+}
+
+/* ---------------- HERO ---------------- */
+.hero {
+    text-align: center;
+    margin-top: 120px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero p {
+    font-size: 18px;
+}
+
+/* ---------------- CONTAINER ---------------- */
+.container {
+    width: 350px;
+    margin: 120px auto;   /* increased space from top */
+}
+
+/* ---------------- FORM ---------------- */
+form {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+/* INPUT */
+input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+}
+
+/* BUTTON */
+button {
+    background: linear-gradient(45deg, #007BFF, #00c6ff);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.08);
+}
+/* DASHBOARD CARDS */
+.card {
+    background: rgba(255,255,255,0.9);
+    padding: 25px;
+    margin: 25px auto;
+    width: 260px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+@media (max-width:500px) {
+    .container {
+        width:90;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    button {
+        display: none;
+    }
+}
+
+/* TOGGLE BUTTON FIX */
+.toggle-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;   /* ensures it stays on top but controlled */
+}
+
+label {
+    font-weight: 600;
+    margin-top: 8px;
+    display: block;
+}
+
+/* TOGGLE SWITCH */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 80px;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+.slider {
+    width: 50px;
+    height: 25px;
+    background: #ccc;
+    border-radius: 25px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* circle */
+.slider::before {
+    content: "";
+    width: 21px;
+    height: 21px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: 0.3s;
+}
+
+/* ON state */
+input:checked + .slider {
+    background: #007BFF;
+}
+
+input:checked + .slider::before {
+    transform: translateX(25px);
+}
+
+.slider::after {
+    content: "🌙";
+    position: absolute;
+    right: 6px;
+    top: 3px;
+    font-size: 12px;
+}

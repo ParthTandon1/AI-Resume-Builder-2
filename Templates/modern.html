@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Modern Resume</title>
+
+<style>
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background: #eef2f7;
+}
+
+/* MAIN LAYOUT */
+.container {
+    display: flex;
+    width: 900px;
+    margin: 30px auto;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* LEFT SIDEBAR */
+.left {
+    width: 35%;
+    background: #2b5797;
+    color: white;
+    padding: 20px;
+}
+
+/* RIGHT SIDE */
+.right {
+    width: 65%;
+    padding: 25px;
+}
+
+/* NAME */
+.name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* SECTION */
+.section {
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 14px;
+    border-bottom: 2px solid #2b5797;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+}
+
+/* LEFT SECTION TITLE */
+.left .section-title {
+    border-bottom: 2px solid white;
+}
+
+/* TEXT */
+p {
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* LIST */
+ul {
+    padding-left: 18px;
+}
+
+li {
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+/* CONTACT */
+.contact p {
+    margin: 5px 0;
+}
+
+/* DOWNLOAD BUTTON */
+.download-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #2b5797;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* PRINT FIX */
+@media print {
+    .download-btn {
+        display: none;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- DOWNLOAD BUTTON -->
+<a href="/download">
+    <button class="download-btn">⬇ Download PDF</button>
+</a>
+
+<div class="container">
+
+<!-- LEFT SIDE -->
+<div class="left">
+
+<div class="name">{{ resume.full_name }}</div>
+
+<div class="section contact">
+<div class="section-title">CONTACT</div>
+<p>{{ resume.phone }}</p>
+<p>{{ resume.email }}</p>
+<p>{{ resume.address }}</p>
+</div>
+
+<div class="section">
+<div class="section-title">SKILLS</div>
+<ul>
+{% for item in resume.skills.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+</div>
+
+<!-- RIGHT SIDE -->
+<div class="right">
+
+<div class="section">
+<div class="section-title">PROFILE SUMMARY</div>
+<p>{{ resume.profile }}</p>
+</div>
+
+<div class="section">
+<div class="section-title">EDUCATION</div>
+<ul>
+{% for item in resume.education.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="section">
+<div class="section-title">WORK EXPERIENCE</div>
+<ul>
+{% for item in resume.internships.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="section">
+<div class="section-title">PROJECTS</div>
+<ul>
+{% for item in resume.projects.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="section">
+<div class="section-title">CERTIFICATIONS / COURSES</div>
+<ul>
+{% for item in resume.certifications.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="section">
+<div class="section-title">ACHIEVEMENTS</div>
+<ul>
+{% for item in resume.achievements.split('\n') %}
+<li>{{ item }}</li>
+{% endfor %}
+</ul>
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

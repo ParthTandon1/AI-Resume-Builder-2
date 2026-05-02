@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from PyPDF2 import PdfReader
 import os
+from weasyprint import HTML
 
 app = Flask(__name__, template_folder="templates", static_folder="static")
 app.secret_key = os.getenv("SECRET_KEY", "fallback_key")
@@ -169,8 +170,27 @@ def preview():
 # ---------- DOWNLOAD (DISABLED SAFE VERSION) ----------
 @app.route("/download")
 def download():
-    return "PDF download disabled on server"
 
+    if "user_id" not in session:
+        return redirect("/login")
+
+    resume = Resume.query.filter_by(
+        user_id=session["user_id"]
+    ).order_by(Resume.id.desc()).first()
+
+    if not resume:
+        return "No resume found"
+
+    # Render HTML template
+    rendered = render_template("classic.html", resume=resume)
+
+    # Convert to PDF
+    pdf = HTML(string=rendered).write_pdf()
+
+    return (pdf, 200, {
+        'Content-Type': 'application/pdf',
+        'Content-Disposition': f'attachment; filename={resume.full_name}.pdf'
+    })
 
 @app.route("/logout")
 def logout():
